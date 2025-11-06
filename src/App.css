@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -50,4 +50,199 @@ li {
 }
 .complete {
   color: rgb(140, 186, 105);
+} */
+
+
+body {
+    /* Use the body to set the overall background and font */
+    background-color: #f3f4f6; /* Equivalent to bg-gray-100 */
+    font-family: 'Inter', sans-serif;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin: 0;
+}
+
+.main-container {
+    /* This centers the content and controls max width */
+    max-width: 32rem; /* Reduced max-width for a more mobile-friendly, card-like appearance */
+    margin: 0 auto;
+    padding: 1rem; 
+}
+
+h1 {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 800; /* font-extrabold */
+    color: #4f46e5; /* Indigo color */
+    margin-bottom: 1.5rem; /* mb-6 */
+    text-align: center;
+    letter-spacing: -0.025em; /* tracking-tight */
+}
+
+h2 {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    color: #1f2937; /* text-gray-800 */
+    margin-bottom: 1rem; /* mb-4 */
+    border-bottom: 2px solid #e5e7eb; /* border-b pb-2 */
+    padding-bottom: 0.5rem;
+}
+
+/* --- Form Styling: .basic-form --- */
+.basic-form {
+    background-color: #ffffff; /* bg-white */
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+    margin-bottom: 2rem; /* mb-8 */
+    border: 1px solid #f3f4f6; /* border border-gray-100 */
+}
+
+.form-row {
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+.basic-form label {
+    display: block;
+    color: #374151; /* text-gray-700 */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.basic-form .input-field {
+    width: 100%; /* w-full */
+    padding: 0.75rem; /* p-3 */
+    border: 2px solid #d1d5db; /* border-2 border-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    transition: all 150ms ease-in-out; 
+    font-size: 1rem; /* text-base */
+}
+
+.basic-form .input-field:focus {
+    outline: none;
+    border-color: #4f46e5; /* focus:border-indigo-500 */
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5); /* focus:ring-indigo-500 equivalent */
+}
+
+/* --- Button Styling: .btn (Add Project) --- */
+.btn {
+    width: 100%; /* w-full */
+    background-color: #4f46e5; /* bg-indigo-600 */
+    color: #ffffff; /* text-white */
+    padding-top: 0.75rem; /* py-3 */
+    padding-bottom: 0.75rem; 
+    border-radius: 0.5rem; /* rounded-lg */
+    font-weight: 700; /* font-bold */
+    letter-spacing: 0.025em; /* tracking-wider */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+    transition: all 200ms ease-in-out; 
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #4338ca; /* hover:bg-indigo-700 */
+}
+
+.btn:active {
+    transform: scale(0.98); /* active:scale-98 */
+}
+
+
+/* --- Project List: .project-list-ul --- */
+.project-list-ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0; 
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* space-y-3 */
+}
+
+/* List Item Base Style */
+.project-list-ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem; /* p-4 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    transition: all 300ms ease-in-out; 
+    background-color: #ffffff; /* bg-white */
+    border: 1px solid #d1d5db; /* border-gray-300 */
+}
+
+.project-list-ul li:hover:not(.completed) {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-lg */
+}
+
+/* Completed List Item Style */
+.project-list-ul .completed {
+    background-color: #dcfce7; /* Light Green, bg-green-100 */
+    border-color: #4ade80; /* Green Border, border-green-400 */
+    opacity: 0.8;
+}
+
+/* Empty List Message */
+.project-list-ul .empty {
+    color: #6b7280; /* text-gray-500 */
+    font-style: italic;
+    padding: 1rem;
+    background-color: #fffbeb; /* Light Yellow, bg-yellow-50 */
+    border: 1px solid #fcd34d; /* border-yellow-200 */
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+/* Label and Checkbox */
+.project-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* space-x-3 */
+    cursor: pointer;
+    flex-grow: 1; 
+}
+
+.project-label .checkbox {
+    /* Customizing checkbox appearance (Tailwind form-checkbox is complex, mimicking core styles) */
+    height: 1.25rem; /* h-5 */
+    width: 1.25rem; /* w-5 */
+    accent-color: #4f46e5; /* text-indigo-600 */
+    border-radius: 50%; /* rounded-full */
+    border: 1px solid #9ca3af; /* border-gray-400 */
+}
+
+/* Text Styling */
+.project-label .is-completed {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 500; /* font-medium */
+    color: #1f2937; /* text-gray-900 */
+}
+
+/* Strikethrough style for completed text */
+.completed .is-completed {
+    text-decoration: line-through;
+    color: #4b5563; /* text-gray-600 */
+    font-style: italic;
+}
+
+/* Delete Button: .deleted */
+.deleted {
+    margin-left: 1rem; /* ml-4 */
+    padding: 0.25rem 0.75rem; /* px-3 py-1 */
+    font-size: 0.875rem; /* text-sm */
+    background-color: #dc2626; /* bg-red-600 */
+    color: #ffffff; /* text-white */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-md */
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+    border: none;
+}
+
+.deleted:hover {
+    background-color: #b91c1c; /* hover:bg-red-700 */
+}
+
+.deleted:active {
+    transform: scale(0.95); /* active:scale-95 */
 }
