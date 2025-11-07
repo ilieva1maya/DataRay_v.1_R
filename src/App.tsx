@@ -1,27 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import type { ProjectItem } from "./interfaces/project";
+import { AddProjectForm } from "./components/AddProjectForm";
 
 function App() {
-  const [newProjectTitle, setNewProjectTitle] = useState("");
   const [projects, setProjects] = useState<ProjectItem[]>([]);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (newProjectTitle.trim() === "") return;
-    console.log(newProjectTitle);
-
-    setProjects((prevIProjects) => {
-      const newProject: ProjectItem = {
-        id: crypto.randomUUID(),
-        title: newProjectTitle,
-        completed: false,
-      };
-      return [...prevIProjects, newProject];
-    });
-
-    setNewProjectTitle("");
-  }
 
   function toggleProject(id: string, completed: boolean) {
     setProjects((currentProjects) => {
@@ -29,12 +12,13 @@ function App() {
         if (project.id === id) {
           return { ...project, completed };
         }
+        console.log(project);
         return project;
       });
     });
   }
 
-  function deleteProject(id: string) {
+  function finishProject(id: string) {
     setProjects((currentProjects) => {
       return currentProjects.filter((project) => project.id !== id);
     });
@@ -43,21 +27,9 @@ function App() {
   return (
     <>
       <h1>DataRay Project Tracker</h1>
-      <form onSubmit={handleSubmit} className="basic-form" action="">
-        <div className="form-row">
-          <label htmlFor="inputProject">Enter Project</label>
-          <input
-            value={newProjectTitle}
-            onChange={(e) => setNewProjectTitle(e.target.value)}
-            type="text"
-            placeholder="Enter Project here..."
-            id="inputProject"
-          />
-        </div>
-        <button className="btn" type="submit">
-          Add Project
-        </button>
-      </form>
+
+    <AddProjectForm />
+
       <h2>Current Projects: ({projects.length})</h2>
       <ul>
         {projects.length === 0 && (
@@ -72,13 +44,14 @@ function App() {
                 onChange={(e) => toggleProject(project.id, e.target.checked)}
                 className="completed"
               />
-              <span className="is-completed">{project.title}</span>
+              {/* <span className="is-completed">{project.title}</span> */}
+              {project.title}
             </label>
             <button
-              onClick={() => deleteProject(project.id)}
-              className="deleted"
+              onClick={() => finishProject(project.id)}
+              className="finished"
             >
-              Delete
+              Finish
             </button>
           </li>
         ))}

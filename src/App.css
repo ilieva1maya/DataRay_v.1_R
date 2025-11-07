@@ -62,7 +62,7 @@ li {
 }
 
 .basic-form .input-field {
-    width: 100%;
+    width: 90%;
     padding: 0.75rem;
     border: 2px solid #d1d5db;
     border-radius: 0.5rem;
@@ -156,7 +156,7 @@ li {
     border: 1px solid #9ca3af;
 }
 
-.project-label .is-completed {
+/* .project-label .is-completed {
     font-size: 1.125rem;
     font-weight: 500;
     color: #1f2937;
@@ -166,13 +166,25 @@ li {
     text-decoration: line-through;
     color: #4b5563;
     font-style: italic;
+} */
+
+.project-label {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1f2937;
 }
 
-.deleted {
+.completed {
+    text-decoration: line-through;
+    color: #4b5563;
+    font-style: italic;
+}
+
+.finished {
     margin-left: 1rem;
     padding: 0.25rem 0.75rem;
     font-size: 0.875rem;
-    background-color: #dc2626;
+    background-color: #5db051;
     color: #ffffff;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -181,9 +193,10 @@ li {
     border: none;
 }
 
-.deleted:hover {
-    background-color: #b91c1c;
+.finished:hover {
+    background-color: #2d7a30;
 }
 
-.deleted:active {
+.finished:active {
     transform: scale(0.95);
+}
