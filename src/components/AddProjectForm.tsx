@@ -1,21 +1,16 @@
 import { useState } from "react";
-// import type { ProjectItem } from "../interfaces/project";
 
-export function AddProjectForm() {
-
+// export function AddProjectForm(props: { onSubmit: (title: string) => void }) {
+export function AddProjectForm({ onSubmit }: { onSubmit: (title: string) => void }) {
+    // props.onSubmit
+    onSubmit
     const [newProjectTitle, setNewProjectTitle] = useState("");
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         if (newProjectTitle.trim() === "") return;
 
-        // setProjects((prevIProjects) => {
-        //     const newProject: ProjectItem = {
-        //         id: crypto.randomUUID(),
-        //         title: newProjectTitle,
-        //         completed: false,
-        //     };
-        //     return [...prevIProjects, newProject];
-        // });
+        // props.onSubmit(newProjectTitle.trim());
+        onSubmit(newProjectTitle.trim());
 
         setNewProjectTitle("");
     }

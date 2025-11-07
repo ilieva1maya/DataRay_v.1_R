@@ -1,10 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import type { ProjectItem } from "./interfaces/project";
+import type { ProjectItemI } from "./interfaces/project";
 import { AddProjectForm } from "./components/AddProjectForm";
+import { ProjectsList } from "./components/ProjectsList";
 
 function App() {
-  const [projects, setProjects] = useState<ProjectItem[]>([]);
+  const [projects, setProjects] = useState<ProjectItemI[]>([]);
+
+  useEffect(() => {
+    const storedProjects = localStorage.getItem("projects");
+    if (storedProjects) {
+      setProjects(JSON.parse(storedProjects));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("projects", JSON.stringify(projects));
+  }, [projects]); 
+
+  function addProject(title: string) {
+
+        setProjects((prevIProjects) => {
+            const newProject: ProjectItemI = {
+                id: crypto.randomUUID(),
+                title,
+                completed: false,
+            };
+            return [...prevIProjects, newProject];
+        });
+  }
 
   function toggleProject(id: string, completed: boolean) {
     setProjects((currentProjects) => {
@@ -28,34 +52,14 @@ function App() {
     <>
       <h1>DataRay Project Tracker</h1>
 
-    <AddProjectForm />
+    <AddProjectForm onSubmit={addProject}/>
 
       <h2>Current Projects: ({projects.length})</h2>
-      <ul>
-        {projects.length === 0 && (
-          <li className="empty">Get started by adding a project above!</li>
-        )}
-        {projects.map((project) => (
-          <li key={project.id} className={project.completed ? "completed" : ""}>
-            <label className="project-list">
-              <input
-                type="checkbox"
-                checked={project.completed}
-                onChange={(e) => toggleProject(project.id, e.target.checked)}
-                className="completed"
-              />
-              {/* <span className="is-completed">{project.title}</span> */}
-              {project.title}
-            </label>
-            <button
-              onClick={() => finishProject(project.id)}
-              className="finished"
-            >
-              Finish
-            </button>
-          </li>
-        ))}
-      </ul>
+    <ProjectsList
+      projects={projects}
+      toggleProject={toggleProject}
+      finishProject={finishProject}
+    />
     </>
   );
 }
