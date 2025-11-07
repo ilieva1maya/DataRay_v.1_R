@@ -156,18 +156,6 @@ li {
     border: 1px solid #9ca3af;
 }
 
-/* .project-label .is-completed {
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: #1f2937;
-}
-
-.completed .is-completed {
-    text-decoration: line-through;
-    color: #4b5563;
-    font-style: italic;
-} */
-
 .project-label {
     font-size: 1.125rem;
     font-weight: 500;
